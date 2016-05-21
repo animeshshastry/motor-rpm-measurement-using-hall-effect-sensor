@@ -1,18 +1,9 @@
-/*
-Arduino Hall Effect Sensor Project
-by Arvind Sanjeev
-Please check out  http://diyhacking.com for the tutorial of this project.
-DIY Hacking
-*/
+//this code measures the difference between two rising edges of the digitalised signal coming from hall sensor and then prints the rpm.
 
-
- volatile byte half_revolutions;
- unsigned int rpm;
- int refsig=200;
- unsigned long timeold;
- int val;
+ int refsig=200;//for converting the analog signal coming from hall sensor to digital through arduino code
+ int val;//the digital value of the incoming analog signals
  int prev_val=0;
- int t,cur_t,count=0;
+ int t,cur_t;//time variables
  void setup()
  {
    Serial.begin(115200);
@@ -21,12 +12,12 @@ DIY Hacking
  }
  void loop()//Measure RPM
  {
-  int sig=analogRead(A0);
-  if(sig>refsig) val=HIGH;
+  int sig=analogRead(A0);//read raw value of hall sensor
+  if(sig>refsig) val=HIGH;//convert it to digital 0,1 form
   else val=LOW;
-  if(prev_val==0 && val==1) {
+  if(prev_val==0 && val==1) {//check for rising edge
     cur_t=micros();
-    Serial.println(1000000*60/(cur_t-t));
+    Serial.println(1000000*60/(cur_t-t));//print the rpm
     t=micros();
   }
    prev_val=val;
