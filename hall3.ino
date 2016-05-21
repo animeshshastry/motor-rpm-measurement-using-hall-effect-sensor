@@ -1,5 +1,5 @@
 //this code measures the difference between two rising edges of the digitalised signal coming from hall sensor and then prints the rpm.
-
+//pin A0 is the signal pin
  int refsig=200;//for converting the analog signal coming from hall sensor to digital through arduino code
  int val;//the digital value of the incoming analog signals
  int prev_val=0;
@@ -7,7 +7,6 @@
  void setup()
  {
    Serial.begin(115200);
-   digitalWrite(0,HIGH);
    pinMode(A0,INPUT);
  }
  void loop()//Measure RPM
