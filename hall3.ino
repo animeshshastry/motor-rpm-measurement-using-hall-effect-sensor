@@ -3,7 +3,7 @@
  int refsig=200;//for converting the analog signal coming from hall sensor to digital through arduino code
  int val;//the digital value of the incoming analog signals
  int prev_val=0;
- int t,cur_t;//time variables
+ unsigned long t,cur_t;//time variables
  void setup()
  {
    Serial.begin(115200);
